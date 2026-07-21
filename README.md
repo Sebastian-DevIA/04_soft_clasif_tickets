@@ -49,7 +49,7 @@ Los pasos concretos de cada etapa se irán documentando aquí a medida que se im
 ## Roadmap
 
 - [x] Hito 0 — Entorno, estructura del proyecto, documentación base.
-- [ ] Hito 1 — Adquisición y exploración del dataset público de reseñas (pandas).
+- [x] Hito 1 — Adquisición y exploración del dataset público de reseñas (pandas).
 - [ ] Hito 2 — Preprocesamiento NLP (limpieza, tokenización, TF-IDF).
 - [ ] Hito 3 — Entrenamiento y evaluación del clasificador de sentimiento.
 - [ ] Hito 4 — Persistencia en MySQL.
