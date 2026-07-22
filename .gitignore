@@ -6,7 +6,7 @@ data/raw/*
 !data/raw/.gitkeep
 data/processed/*
 !data/processed/.gitkeep
-models/*
-!models/.gitkeep
+models/*.joblib
+models/*.pkl
 .env
 .pytest_cache/

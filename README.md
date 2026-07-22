@@ -13,6 +13,8 @@ Clasificador de comentarios/reseñas de clientes por sentimiento usando NLP, con
 
 Proyecto en construcción, en fase de aprendizaje aplicado. Ver [docs/DECISIONES.md](docs/DECISIONES.md) para el historial de decisiones técnicas tomadas hito a hito.
 
+> **Nota de seguridad**: este es un MVP pensado para correr localmente. La API no tiene autenticación, autorización ni rate limiting. No lo despliegues en un entorno accesible desde internet sin agregar esos controles primero.
+
 ## Stack
 
 - **NLP**: scikit-learn (TF-IDF + clasificador) y spaCy para preprocesamiento de texto en español.
@@ -42,6 +44,30 @@ Proyecto en construcción, en fase de aprendizaje aplicado. Ver [docs/DECISIONES
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+python -m spacy download es_core_news_sm
+```
+
+**Base de datos (MySQL vía Docker):**
+
+```bash
+docker run -d --name clasif_tickets_mysql \
+  -e MYSQL_ROOT_PASSWORD=rootpass \
+  -e MYSQL_DATABASE=clasif_tickets \
+  -e MYSQL_USER=clasif_app \
+  -e MYSQL_PASSWORD=clasif_app_pass \
+  -p 3307:3306 \
+  -v clasif_tickets_mysql_data:/var/lib/mysql \
+  mysql:8
+
+cp .env.example .env   # ajusta las credenciales si cambiaste algo arriba
+python scripts/init_db.py
+```
+
+**Entrenar el modelo y correr los scripts:**
+
+```bash
+python scripts/explore_dataset.py
+python scripts/train_model.py
 ```
 
 Los pasos concretos de cada etapa se irán documentando aquí a medida que se implementen.
@@ -49,11 +75,11 @@ Los pasos concretos de cada etapa se irán documentando aquí a medida que se im
 ## Roadmap
 
 - [x] Hito 0 — Entorno, estructura del proyecto, documentación base.
-- [ ] Hito 1 — Adquisición y exploración del dataset público de reseñas (pandas).
-- [ ] Hito 2 — Preprocesamiento NLP (limpieza, tokenización, TF-IDF).
-- [ ] Hito 3 — Entrenamiento y evaluación del clasificador de sentimiento.
-- [ ] Hito 4 — Persistencia en MySQL.
-- [ ] Hito 5 — Backend API (FastAPI).
+- [x] Hito 1 — Adquisición y exploración del dataset público de reseñas (pandas).
+- [x] Hito 2 — Preprocesamiento NLP (limpieza, tokenización, TF-IDF).
+- [x] Hito 3 — Entrenamiento y evaluación del clasificador de sentimiento.
+- [x] Hito 4 — Persistencia en MySQL.
+- [x] Hito 5 — Backend API (FastAPI).
 - [ ] Hito 6 (post-MVP) — Clasificación adicional por tema/urgencia.
 - [ ] Hito 7 (post-MVP) — Dashboard o reporte de tendencias.
 
