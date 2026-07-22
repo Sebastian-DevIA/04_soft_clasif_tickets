@@ -77,7 +77,7 @@ Los pasos concretos de cada etapa se irán documentando aquí a medida que se im
 - [x] Hito 2 — Preprocesamiento NLP (limpieza, tokenización, TF-IDF).
 - [x] Hito 3 — Entrenamiento y evaluación del clasificador de sentimiento.
 - [x] Hito 4 — Persistencia en MySQL.
-- [ ] Hito 5 — Backend API (FastAPI).
+- [x] Hito 5 — Backend API (FastAPI).
 - [ ] Hito 6 (post-MVP) — Clasificación adicional por tema/urgencia.
 - [ ] Hito 7 (post-MVP) — Dashboard o reporte de tendencias.
 
