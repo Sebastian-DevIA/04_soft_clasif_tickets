@@ -50,8 +50,8 @@ Los pasos concretos de cada etapa se irán documentando aquí a medida que se im
 
 - [x] Hito 0 — Entorno, estructura del proyecto, documentación base.
 - [x] Hito 1 — Adquisición y exploración del dataset público de reseñas (pandas).
-- [ ] Hito 2 — Preprocesamiento NLP (limpieza, tokenización, TF-IDF).
-- [ ] Hito 3 — Entrenamiento y evaluación del clasificador de sentimiento.
+- [x] Hito 2 — Preprocesamiento NLP (limpieza, tokenización, TF-IDF).
+- [x] Hito 3 — Entrenamiento y evaluación del clasificador de sentimiento.
 - [ ] Hito 4 — Persistencia en MySQL.
 - [ ] Hito 5 — Backend API (FastAPI).
 - [ ] Hito 6 (post-MVP) — Clasificación adicional por tema/urgencia.
