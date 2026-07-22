@@ -185,3 +185,9 @@ def test_create_comment_with_empty_text_is_rejected_with_422(client):
     response = client.post("/api/comments", json={"text": ""})
 
     assert response.status_code == 422
+
+
+def test_create_comment_with_text_over_max_length_is_rejected_with_422(client):
+    response = client.post("/api/comments", json={"text": "a" * 5001})
+
+    assert response.status_code == 422

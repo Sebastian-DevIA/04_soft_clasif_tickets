@@ -1,9 +1,13 @@
+import logging
+
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
 
 from backend.app.dependencies import get_db
 from backend.app.schemas.comments import CommentIn, CommentOut
 from backend.app.services import comments as comments_service
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/comments", tags=["comments"])
 
@@ -12,11 +16,15 @@ router = APIRouter(prefix="/comments", tags=["comments"])
 def create_comment(payload: CommentIn, db: Session = Depends(get_db)) -> CommentOut:
     try:
         comment = comments_service.create_comment(db, payload)
-    except Exception as exc:  # noqa: BLE001 - no exponer el traceback crudo al cliente
+    except Exception:
+        # El detalle real de la excepcion se loguea en servidor, no se expone
+        # al cliente: podria filtrar nombres de tabla/columna o detalles del
+        # driver de la base de datos (info disclosure).
+        logger.exception("Fallo al clasificar y guardar el comentario")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"No se pudo clasificar y guardar el comentario: {exc}",
-        ) from exc
+            detail="No se pudo procesar el comentario. Intenta de nuevo más tarde.",
+        ) from None
     return CommentOut.model_validate(comment)
 
 

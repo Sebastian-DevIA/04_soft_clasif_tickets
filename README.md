@@ -13,6 +13,8 @@ Clasificador de comentarios/reseñas de clientes por sentimiento usando NLP, con
 
 Proyecto en construcción, en fase de aprendizaje aplicado. Ver [docs/DECISIONES.md](docs/DECISIONES.md) para el historial de decisiones técnicas tomadas hito a hito.
 
+> **Nota de seguridad**: este es un MVP pensado para correr localmente. La API no tiene autenticación, autorización ni rate limiting. No lo despliegues en un entorno accesible desde internet sin agregar esos controles primero.
+
 ## Stack
 
 - **NLP**: scikit-learn (TF-IDF + clasificador) y spaCy para preprocesamiento de texto en español.

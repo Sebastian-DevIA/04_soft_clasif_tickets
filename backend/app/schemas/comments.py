@@ -7,8 +7,8 @@ class CommentIn(BaseModel):
     # min_length=1: un texto vacio no aporta nada que clasificar y hoy se
     # aceptaba silenciosamente (el modelo igual devolvia una prediccion sobre
     # ""), lo cual es un hueco de validacion real, no solo teorico.
-    text: str = Field(min_length=1)
-    source: str = "api"
+    text: str = Field(min_length=1, max_length=5000)
+    source: str = Field(default="api", max_length=50)
 
 
 class PredictionOut(BaseModel):
