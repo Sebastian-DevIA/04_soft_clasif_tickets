@@ -1,10 +1,13 @@
 from datetime import datetime
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class CommentIn(BaseModel):
-    text: str
+    # min_length=1: un texto vacio no aporta nada que clasificar y hoy se
+    # aceptaba silenciosamente (el modelo igual devolvia una prediccion sobre
+    # ""), lo cual es un hueco de validacion real, no solo teorico.
+    text: str = Field(min_length=1)
     source: str = "api"
 
 
